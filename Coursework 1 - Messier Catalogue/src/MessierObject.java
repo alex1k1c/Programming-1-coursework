@@ -25,7 +25,7 @@ public class MessierObject {
         this.dec = dec;
     }
 
-    //Getters
+    //Accessor methods
     public String getMessierNum() {return messierNum;}
     public String getNgcIcNum() {return ngcIcNum;}
     public String getCommonName() {return commonName;}
