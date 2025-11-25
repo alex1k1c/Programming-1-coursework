@@ -1,10 +1,18 @@
 public class MessierObject {
-    String messierNum;
-    String ncgNum;
+    private String messierNum;
+    private String ncgNum;
+    private String commonName;
+    private String type;
+    private String distance;
+    private String constellation;
+    private String apparentMag;
+    private double rightAsc;
+    private double dec;
+
     //constructor
-    public MessierObject(String m, String n) {
-        messierNum = m;
-        ncgNum = n;
+    public MessierObject(String messierNum, String ncgNum, String commonName,
+                         String type, String distance, String constellation,
+                         String apparentMag, double rightAsc, double dec) {
     }
 
 
