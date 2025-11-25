@@ -13,6 +13,16 @@ public class MessierObject {
     public MessierObject(String messierNum, String ncgNum, String commonName,
                          String type, String distance, String constellation,
                          String apparentMag, double rightAsc, double dec) {
+
+        this.messierNum = messierNum;
+        this.ncgNum = ncgNum;
+        this.commonName = commonName;
+        this.type = type;
+        this.distance = distance;
+        this.constellation = constellation;
+        this.apparentMag = apparentMag;
+        this.rightAsc = rightAsc;
+        this.dec = dec;
     }
 
 
