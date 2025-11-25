@@ -37,8 +37,17 @@ public class MessierObject {
     public double getDec() {return dec;}
 
     //toString
+    @Override
     public String toString() {
-        return messierNum + "," + ngcIcNum + ","
+        return messierNum + "," +
+                ngcIcNum + "," +
+                commonName + "," +
+                type + "," +
+                distance + "," +
+                constellation + "," +
+                apparentMag + "," +
+                rightAsc + "," +
+                dec;
     }
 
 
