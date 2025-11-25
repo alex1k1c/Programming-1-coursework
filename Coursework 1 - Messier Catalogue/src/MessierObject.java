@@ -25,6 +25,16 @@ public class MessierObject {
         this.dec = dec;
     }
 
+    //Getters
+    public String getMessierNum() {return messierNum;}
+    public String getNcgNum() {return ncgNum;}
+    public String getCommonName() {return commonName;}
+    public String getType() {return type;}
+    public String getDistance() {return distance;}
+    public String getConstellation() {return constellation;}
+    public String getApparentMag() {return apparentMag;}
+    public double getRightAsc() {return rightAsc;}
+    public double getDec() {return dec;}
 
 
 
