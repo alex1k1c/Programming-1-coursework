@@ -1,4 +1,4 @@
-public class MessierObject {
+public class MessierObject implements Comparable<MessierObject> {
     private String messierNum;
     private String ngcIcNum;
     private String commonName;
@@ -50,5 +50,10 @@ public class MessierObject {
                 dec;
     }
 
+    //Comparable
+    @Override
+    public int compareTo(MessierObject other) {
+        return
+    }
 
 }
