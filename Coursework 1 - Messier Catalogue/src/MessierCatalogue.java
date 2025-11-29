@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MessierCatalogue {
     //public void make Me
-    private List<MessierObject> catalogue = new ArrayList<>(); //This is the list that contains all the messier objects
+    private List<MessierObject> member = new ArrayList<>(); //This is the list that contains all the messier objects
 
     public void loadCatalogue(String filename) {
         File data = new File(filename); //grabs all messier data from text file
@@ -16,7 +16,7 @@ public class MessierCatalogue {
                 String line = reader.nextLine(); //reads the next line of content
 
                 MessierObject obj = new MessierObject(line); //creates a messierobject from the line
-                catalogue.add(obj); //adds object to list
+                member.add(obj); //adds object to list
                 //System.out.println(line);
                 //System.out.println(obj.getMessierNum());
             }
@@ -33,7 +33,7 @@ public class MessierCatalogue {
 
         mc.loadCatalogue("messier.txt");
         //System.out.println(mc.catalogue);
-        for (MessierObject o : mc.catalogue){
+        for (MessierObject o : mc.member){
             System.out.println(o); //prints everything
         }
 
