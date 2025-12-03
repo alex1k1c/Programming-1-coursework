@@ -94,7 +94,7 @@ public class MessierObject implements Comparable<MessierObject> {
 
         double m1 = parseMag(this.apparentMag);
         double m2 = parseMag(other.apparentMag);
-        return Double.compare(m1, m2); //Comparing the object mags
+        return Double.compare(m1, m2); //Comparing the object magnitudes
     }
 
     //toString
