@@ -40,7 +40,7 @@ public class MessierObject implements Comparable<MessierObject> {
     //constructor 2 - takes 1 whole line as parameter from text file
     public MessierObject(String line) {
         //String[] p = line.split(",");
-        //this function is needed, as you cannot put any code above 'this' - must be at top of constructo
+        //this function is needed, as you cannot put any code above 'this' - must be at top of constructor
         //therefore function goes inside the 'this' statement
         this(
                 parseLine(line)[0],
