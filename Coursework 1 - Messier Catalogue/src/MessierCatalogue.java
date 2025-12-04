@@ -8,6 +8,9 @@ public class MessierCatalogue {
     //public void make Me
     private List<MessierObject> member = new ArrayList<>(); //This is the list that contains all the messier objects
 
+    public List<MessierObject> getMember() {
+        return member; //Allows other classes to access Messier Objects
+    }
     public void loadCatalogue(String filename) {
         File data = new File(filename); //grabs all messier data from text file
         //try
@@ -29,7 +32,7 @@ public class MessierCatalogue {
     public static void main (String[]args){
         MessierCatalogue mc = new MessierCatalogue();
 
-        mc.loadCatalogue("messier.txt");
+        mc.loadCatalogue("Coursework 1 - Messier Catalogue/src/messier.txt");
         //System.out.println(mc.catalogue);
         for (MessierObject o : mc.member){
             System.out.println(o); //prints everything

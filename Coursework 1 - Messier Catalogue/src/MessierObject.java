@@ -83,14 +83,14 @@ public class MessierObject implements Comparable<MessierObject> {
         String[] parts = parseLine(line); //Parses and cleans line into separate fields
 
 
-        // DEBUG PRINTS - temporary
+     /*   // DEBUG PRINTS - temporary
         System.out.println("RAW LINE: " + line);
         System.out.println(parts[0]);
         System.out.println(parseRA(parts[7]));
         System.out.println("AFTER SPLIT:");
         for (int i = 0; i < parts.length; i++) {
             System.out.println("parts[" + i + "] = [" + parts[i] + "]");
-        }
+        } */
 
         this.messierNum = parts[0];
         this.ngcIcNum = parts[1];
