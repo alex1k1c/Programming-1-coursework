@@ -30,6 +30,7 @@ public class MessierProgram {
 
 
         //(b)
+        System.out.println("(B)");
         System.out.println("This is the average apparent magnitude for all globular clusters.");
         double avgMagnitude = 0;
         double sum = 0; //
@@ -49,8 +50,37 @@ public class MessierProgram {
         }
         System.out.println("The average magnitude for all globular clusters is: "+ avgMagnitude);
 
-
+        System.out.println();
 
         //c
+
+
+        //d
+        System.out.println("(D): ");
+        System.out.println("Here are details of the object in constellation Sagittarius with the highest declination: ");
+        System.out.println();
+
+
+        MessierObject highest = null;
+
+        for (MessierObject o : catalogue.getMember()) {
+            if (Objects.equals(o.getConstellation(), "Sagittarius")) { //check if the object's constellation matches "Sagittarius"
+
+                /*checking if:
+                 - number is either first in the list
+                 - or declination is greater than the highest number so far*/
+                if (highest == null ||  o.getDec() > highest.getDec()) {
+                    highest = o;
+
+                }
+            }
+        }
+        System.out.println(highest);
     }
+
+
+
+
+
+
 }
