@@ -58,7 +58,6 @@ public class MessierProgram {
         //d
         System.out.println("(D): ");
         System.out.println("Here are details of the object in constellation Sagittarius with the highest declination: ");
-        System.out.println();
 
 
         MessierObject highest = null;
