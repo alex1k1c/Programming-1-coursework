@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessierCatalogue {
-    //public void make Me
+    //
     private List<MessierObject> member = new ArrayList<>(); //This is the list that contains all the messier objects
 
     public List<MessierObject> getMember() {
@@ -29,28 +29,7 @@ public class MessierCatalogue {
 
 
     }
-    public static void main (String[]args){
-        MessierCatalogue mc = new MessierCatalogue();
 
-        mc.loadCatalogue("Coursework 1 - Messier Catalogue/src/messier.txt");
-        //System.out.println(mc.catalogue);
-        for (MessierObject o : mc.member){
-            System.out.println(o); //prints everything
-        }
-
-
-    }
 }
 
 
-/*steps this needs to have
-Load every line from messier.txt
-- open file
-- read 1 line at a time
-- pass the line into messierObject constructor
-- add that object into list and close file
-Turn each line into a messierObject
-Store these objects in a collection
-provide methods for queries
-
- */
