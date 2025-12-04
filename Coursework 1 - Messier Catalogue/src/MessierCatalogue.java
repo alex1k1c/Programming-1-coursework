@@ -23,13 +23,28 @@ public class MessierCatalogue {
             }
         } catch (FileNotFoundException e) {//error check if file isnt found
             System.out.println("Error: file cannot be found.");
-            //e.printStackTrace();// helps diagnose exceptions
+
         }
 
 
 
     }
+    //tostring to print entire catalogue
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (MessierObject obj : member) {
+            sb.append(obj.toString()).append("\n");
+        }
+        return sb.toString();
+    }
 
+// main method temporarily back for testing
+    public static void main(String[] args) {
+        MessierCatalogue catalogue = new MessierCatalogue();
+        catalogue.loadCatalogue("src/messier.txt");
+        System.out.println(catalogue);
+    }
 }
 
 
