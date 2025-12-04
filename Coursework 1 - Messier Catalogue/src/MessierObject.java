@@ -28,6 +28,8 @@ public class MessierObject implements Comparable<MessierObject> {
         this.dec = dec;
     }
 
+
+    //for calculating RA
     private static double parseRA(String RA) {
         //replacing letters with spaces, so they can be split type shi
         String cleaned = RA.replace("h", " ")
@@ -49,8 +51,43 @@ public class MessierObject implements Comparable<MessierObject> {
         return Math.toRadians(degrees);
     }
 
+    //for calculating declination
+    private static double parseDec(String decStr) {
 
-    //new parsing method - no regex allowed
+        decStr = decStr.trim();
+
+        // Check if declination is negative
+        int sign = 1;
+        if (decStr.startsWith("-")) {
+            sign = -1;
+            decStr = decStr.substring(1).trim();  // remove the '-' if there for easier parsing
+        }
+
+        //replace the symbols for easier splitting
+        decStr = decStr.replace("°", " ")
+                .replace("'", " ")
+                .replace("\"", " ")
+                .trim();
+
+        String[] parts = decStr.split("\\s+");
+
+        //converts string to doubles
+        double degrees = Double.parseDouble(parts[0]);
+        double minutes = Double.parseDouble(parts[1]);
+        double seconds = Double.parseDouble(parts[2]);
+
+        //convertin to decimal degrees
+        double decimal = degrees + (minutes / 60.0) + (seconds / 3600.0);
+
+        // Apply sign IF num is negative
+        decimal = decimal * sign;
+
+        // converting to angle in radians
+        return Math.toRadians(decimal);
+    }
+
+
+    //new parsing method - ignores commas inside quotes
     private static String[] parseLine(String line) {
         List<String> fields = new ArrayList<>(); //stores resulting fields
         StringBuilder current = new StringBuilder(); //used to build 1 field as file is scanner
@@ -83,14 +120,9 @@ public class MessierObject implements Comparable<MessierObject> {
         String[] parts = parseLine(line); //Parses and cleans line into separate fields
 
 
-     /*   // DEBUG PRINTS - temporary
-        System.out.println("RAW LINE: " + line);
-        System.out.println(parts[0]);
-        System.out.println(parseRA(parts[7]));
-        System.out.println("AFTER SPLIT:");
-        for (int i = 0; i < parts.length; i++) {
-            System.out.println("parts[" + i + "] = [" + parts[i] + "]");
-        } */
+        // DEBUG PRINTS - temporary
+        //System.out.println("RAW line (pre-conversion): " + line);
+
 
         this.messierNum = parts[0];
         this.ngcIcNum = parts[1];
