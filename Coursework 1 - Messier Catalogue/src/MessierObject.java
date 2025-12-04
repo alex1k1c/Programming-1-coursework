@@ -132,7 +132,7 @@ public class MessierObject implements Comparable<MessierObject> {
         this.constellation = parts[5];
         this.apparentMag = parts[6];
         this.rightAsc = parseRA(parts[7]); //calculates RA
-        this.dec = 0.0;
+        this.dec = parseDec(parts[8]);
     }
 
 
@@ -147,7 +147,7 @@ public class MessierObject implements Comparable<MessierObject> {
     public double getRightAsc() {return rightAsc;}
     public double getDec() {return dec;}
 
-    private double parseMag(String mag) {
+    public double parseMag(String mag) {
         mag = mag.trim(); //Converts mag string into a value
 
         //Handling the ranges
