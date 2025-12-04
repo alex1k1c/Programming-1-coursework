@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Comparator;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class MessierProgram {
@@ -26,5 +27,30 @@ public class MessierProgram {
             System.out.println(obj);
         }
         System.out.println();
+
+
+        //(b)
+        System.out.println("This is the average apparent magnitude for all globular clusters.");
+        double avgMagnitude = 0;
+        double sum = 0; //
+        int count = 0;
+        for (MessierObject o : catalogue.getMember()) {
+            if (Objects.equals(o.getType(), "Globular cluster")) { //checking if the type is right
+
+                //if the type is right, magnitude is added to sum, count is recorded to divide both by eachother
+                double i = Double.parseDouble(o.getApparentMag());
+                sum += i;
+                count+= 1;
+                avgMagnitude = (sum/count);
+
+            }
+
+
+        }
+        System.out.println("The average magnitude for all globular clusters is: "+ avgMagnitude);
+
+
+
+        //c
     }
 }
