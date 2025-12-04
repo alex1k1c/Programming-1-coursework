@@ -14,11 +14,9 @@ public class MessierCatalogue {
         try (Scanner reader = new Scanner(data)) {
             while (reader.hasNextLine()) {
                 String line = reader.nextLine(); //reads the next line of content
-
                 MessierObject obj = new MessierObject(line); //creates a messierobject from the line
                 member.add(obj); //adds object to list
-                //System.out.println(line);
-                //System.out.println(obj.getMessierNum());
+
             }
         } catch (FileNotFoundException e) {//error check if file isnt found
             System.out.println("Error: file cannot be found.");

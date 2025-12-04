@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class MessierObject implements Comparable<MessierObject> {
     private String messierNum;
     private String ngcIcNum;
@@ -25,36 +28,70 @@ public class MessierObject implements Comparable<MessierObject> {
         this.dec = dec;
     }
 
+    private static double parseRA(String RA) {
+        //replacing letters with spaces, so they can be split type shi
+        String cleaned = RA.replace("h", " ")
+                .replace("m", " ")
+                .replace("s", " ")
+                .trim();
 
+        String[] parts = cleaned.split("\\s+");
+
+        double hours = Double.parseDouble(parts[0]);
+        double minutes = Double.parseDouble(parts[1]);
+        double seconds = Double.parseDouble(parts[2]);
+
+        //converting into decimal hours
+        double decimalHours = hours + (minutes / 60.0) + (seconds / 3600.0);
+        //convert hours  ->  degrees  ->  radians
+        double degrees = decimalHours *15.0;
+
+        return Math.toRadians(degrees);
+    }
+
+
+    //new parsing method - no regex allowed
     private static String[] parseLine(String line) {
-        String[] p = line.split(","); // splits the line into parts separated by commas
+        List<String> fields = new ArrayList<>(); //stores resulting fields
+        StringBuilder current = new StringBuilder(); //used to build 1 field as file is scanner
+        boolean insideQuotes = false;
 
-        String[] cleaned = new String[p.length];
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
 
-        for (int i = 0; i <  p.length; i++) {
-            cleaned[i] = p[i].trim().replace("\"", ""); //removes double quotes from parts
+            if (c == '"') { //checks for quote marks to enable state to ignore commas inside quotes
+                insideQuotes = !insideQuotes;
+            }
+            else if (c == ',' && !insideQuotes) {  //if there is a comma, and this comma is not inside quotes
+                //splits the field below, adds to list
+                fields.add(current.toString().trim().replace("\"", ""));
+                current.setLength(0); //resets string builder for next field
+            }
+            else {
+                current.append(c); //otherwise, add the letter to current field
+            }
         }
 
-        return cleaned; // new clean list of info
+        // last field must be done manually
+        fields.add(current.toString().trim().replace("\"", ""));
+
+        return fields.toArray(new String[0]);
     }
-    //constructor 2 - takes 1 whole line as parameter from text file
-    /*public MessierObject(String line) {
-        //String[] p = line.split(",");
-        //this function is needed, as you cannot put any code above 'this' - must be at top of constructor
-        //therefore function goes inside the 'this' statement
-        this(
-                parseLine(line)[0],
-                parseLine(line)[1],
-                parseLine(line)[2],
-                parseLine(line)[3],
-                parseLine(line)[4],
-                parseLine(line)[5],
-                parseLine(line)[6],
-                0.0, //temporary
-                0.0);//temporary
-    }*/
+
+
     public MessierObject(String line) {
         String[] parts = parseLine(line); //Parses and cleans line into separate fields
+
+
+        // DEBUG PRINTS - temporary
+        System.out.println("RAW LINE: " + line);
+        System.out.println(parts[0]);
+        System.out.println(parseRA(parts[7]));
+        System.out.println("AFTER SPLIT:");
+        for (int i = 0; i < parts.length; i++) {
+            System.out.println("parts[" + i + "] = [" + parts[i] + "]");
+        }
+
         this.messierNum = parts[0];
         this.ngcIcNum = parts[1];
         this.commonName = parts[2];
@@ -62,7 +99,7 @@ public class MessierObject implements Comparable<MessierObject> {
         this.distance = parts[4];
         this.constellation = parts[5];
         this.apparentMag = parts[6];
-        this.rightAsc = 0.0;
+        this.rightAsc = parseRA(parts[7]); //calculates RA
         this.dec = 0.0;
     }
 
