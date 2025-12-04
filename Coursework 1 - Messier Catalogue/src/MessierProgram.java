@@ -53,7 +53,7 @@ public class MessierProgram {
         //c
         System.out.println("Least distant open cluster");
 
-        MessierObject closestOpen = null; //Stores closest open cluster
+        MessierObject closestOpen = null; //Stores closest open cluster when found
         double minDistance = Double.MAX_VALUE; //Starting with the largest value so any real distance is smaller
         //Loop through every MessierObject in list
         for (MessierObject obj : list) {
