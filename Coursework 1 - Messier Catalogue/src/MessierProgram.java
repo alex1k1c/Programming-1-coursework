@@ -3,7 +3,6 @@ import java.util.Comparator;
 import java.util.ArrayList;
 import java.util.Objects;
 
-
 public class MessierProgram {
     public static void main(String[] args) {
         MessierCatalogue catalogue = new MessierCatalogue();
@@ -77,10 +76,10 @@ public class MessierProgram {
         }
         System.out.println();
 
-        //(d)
-        System.out.println("(D): ");
-        System.out.println("Here are details of the object in constellation Sagittarius with the highest declination: ");
 
+        //(d)
+        System.out.println("(D) ");
+        System.out.println("Here are details of the object in constellation Sagittarius with the highest declination: ");
 
         MessierObject highest = null;
 
@@ -97,5 +96,72 @@ public class MessierProgram {
             }
         }
         System.out.println(highest);
+
+        System.out.println();
+
+
+
+        //(e)
+        System.out.println("(E) ");
+
+        //find M45
+        MessierObject target = null;
+        for (MessierObject o : catalogue.getMember()) {
+            if (o.getMessierNum().equals("M45")){
+                target = o; //target spotted
+                break;
+            }
+        }
+        if (target == null) {
+            System.out.println("Target not found.");
+            return;
+        }
+
+        // variable declaration
+        MessierObject closest = null;
+        double smallest = Double.MAX_VALUE;
+
+// compares every object with m45
+        for (MessierObject o : catalogue.getMember()) {
+
+            // avoids comparing itself
+            if (o == target) continue;
+
+            double angDist = angularDistance(target, o); //calls method to calculate distance
+
+            //if the angular distance found is the smallest yet, set it as the closest obj
+            if (angDist < smallest) {
+                smallest = angDist;
+                closest = o;
+            }
+        }
+
+    // output the distance
+        System.out.println("The object closest in the sky to M45 is:");
+        System.out.println(closest);
+
+        double arcmin = smallest * (180.0 / Math.PI) * 60.0; //converts from radians to arcminutes
+
+        System.out.println("Angular separation (In arcminutes): " + arcmin);
+
+    }
+
+
+
+
+    //<----Methods below---->
+
+    // calculating angular distance between two MessierObjects.
+    // takes in RA and DEC as radians
+    private static double angularDistance(MessierObject a, MessierObject b) {
+        double ra1 = a.getRightAsc();
+        double dec1 = a.getDec();
+        double ra2 = b.getRightAsc();
+        double dec2 = b.getDec();
+
+        double cosD = Math.sin(dec1) * Math.sin(dec2)
+                + Math.cos(dec1) * Math.cos(dec2) * Math.cos(ra1 - ra2);
+
+        return Math.acos(cosD);  // returns distance in radians
     }
 }
