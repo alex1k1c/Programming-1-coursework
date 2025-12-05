@@ -39,12 +39,7 @@ public class MessierCatalogue {
         return sb.toString();
     }
 
-// main method temporarily back for testing
-    public static void main(String[] args) {
-        MessierCatalogue catalogue = new MessierCatalogue();
-        catalogue.loadCatalogue("src/messier.txt");
-        System.out.println(catalogue);
-    }
+
 }
 
 

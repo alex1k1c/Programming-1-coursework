@@ -6,7 +6,7 @@ import java.util.Objects;
 public class MessierProgram {
     public static void main(String[] args) {
         MessierCatalogue catalogue = new MessierCatalogue();
-        catalogue.loadCatalogue("src/messier.txt");
+        catalogue.loadCatalogue("messier.txt");
 
         List<MessierObject> list = catalogue.getMember(); //Retrieving list of MessierObject from catalogue
 
