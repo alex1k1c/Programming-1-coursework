@@ -75,9 +75,9 @@ public class MessierProgram {
             System.out.println("The least distant open cluster is:");
             System.out.println(closestOpen);
         }
+        System.out.println();
 
-
-        //d
+        //(d)
         System.out.println("(D): ");
         System.out.println("Here are details of the object in constellation Sagittarius with the highest declination: ");
 
