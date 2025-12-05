@@ -9,7 +9,7 @@ public class MessierCatalogue {
     private List<MessierObject> member = new ArrayList<>(); //This is the list that contains all the messier objects
 
     public List<MessierObject> getMember() {
-        return member; //Allows other classes to access Messier Objects
+        return member; //return the list of MessierObjects stored in catalogue
     }
     public void loadCatalogue(String filename) {
         File data = new File(filename); //grabs all messier data from text file
